@@ -6,13 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConnexionComponent } from './pages/connexion/connexion.component';
+import { RegisterComponent } from './register/register.component';
+
+
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, ConnexionComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
+    MatButtonModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
