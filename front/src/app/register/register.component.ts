@@ -29,4 +29,5 @@ form: any;
       // Logique d'inscription
     }
   }
+  
 }
