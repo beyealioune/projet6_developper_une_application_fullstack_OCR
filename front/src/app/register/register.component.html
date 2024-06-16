@@ -1,30 +1,51 @@
-<div class="container mt-5">
-  <div class="text-center">
-    <img src="/assets/logo_p6.png" alt="logo" class="img-fluid custom-logo mb-3" />
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-block">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/logo_p6.png" alt="logo" class="img-fluid custom-logo">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <!-- Liens de navigation ici -->
+    </ul>
   </div>
-  <form class="text-center">
-    <div class="form-group row justify-content-center">
-      <label for="username" class="col-sm-3 col-form-label">Nom d'utilisateur</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control custom-input" id="username" placeholder="Nom d'utilisateur">
-      </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 text-center d-block d-lg-none">
+      <!-- Image centrée pour mobile -->
+      <img src="/assets/logo_p6.png" alt="logo" class="img-fluid custom-logo mb-3" />
     </div>
-    <div class="form-group row justify-content-center">
-      <label for="email" class="col-sm-3 col-form-label">Adresse mail</label>
-      <div class="col-sm-3">
-        <input type="email" class="form-control custom-input" id="email" placeholder="Adresse mail">
-      </div>
+    <div class="col-lg-6 formulaire">
+      <!-- Formulaire pour desktop -->
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="text-center">
+        <div class="form-group row justify-content-center">
+          <div class="form-input">
+            <label for="username" class="col-sm-3 col-form-label">Nom d'utilisateur</label>
+            <input type="text" class="form-control custom-input" id="username" placeholder="Nom d'utilisateur">
+          </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <div class="form-input">
+            <label for="email" class="col-sm-3 col-form-label">Adresse mail</label>
+            <input type="email" class="form-control custom-input" id="email" placeholder="Adresse mail">
+          </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <div class="form-input">
+            <label for="password" class="col-sm-3 col-form-label">Mot de passe</label>
+            <input type="password" class="form-control custom-input" id="password" placeholder="Mot de passe">
+          </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="form-group row justify-content-center">
-      <label for="password" class="col-sm-3 col-form-label">Mot de passe</label>
-      <div class="col-sm-3">
-        <input type="password" class="form-control custom-input" id="password" placeholder="Mot de passe">
-      </div>
-    </div>
-    <div class="form-group row justify-content-center">
-      <div class="col-sm-6">
-        <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>

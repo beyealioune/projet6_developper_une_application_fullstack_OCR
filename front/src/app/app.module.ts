@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { RegisterComponent } from './register/register.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 @NgModule({

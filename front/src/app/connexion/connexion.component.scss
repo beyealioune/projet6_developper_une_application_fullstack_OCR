@@ -1,0 +1,49 @@
+@import "~bootstrap/scss/bootstrap";
+
+.custom-logo {
+  width: 15%; 
+}
+
+.navbar {
+  height: 20%;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    border: none; 
+  }
+
+  .custom-logo {
+    max-height: 80px; 
+    width: auto; 
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .d-block {
+    display: block !important; 
+  }
+}
+
+
+@media (min-width: 992px) {
+  .form-control {
+    width: 100%; 
+    max-width: 300px; 
+    margin: auto; 
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
+  }
+  .formGroup {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+  
+}
