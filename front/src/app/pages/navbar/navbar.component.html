@@ -1,0 +1,26 @@
+<!-- navbar.component.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <a class="navbar-brand" href="#">
+      <img src="/assets/logo_p6.png" alt="logo" class="img-fluid custom-logo">
+    </a>
+    <button class="navbar-toggler" (click)="toggleMenu()" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Article</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Thème</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-user"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+ <app-navbar-burger [isVisible]="isMenuVisible" (close)="closeMenu()"></app-navbar-burger>

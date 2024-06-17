@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/bootstrap";
+
+.custom-logo {
+  width: 40px; 
+}
+
+.navbar {
+  padding: 0.5rem 1rem; 
+}
+
+.nav-link {
+  color: #000; 
+}
+
+.navbar-toggler {
+  border: none; 
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-collapse {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  .nav-link {
+    color: #000;
+    padding: 1rem; 
+  }
+}

@@ -8,11 +8,14 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
-import { RegisterComponent } from './register/register.component';
+import { BoardComponent } from './pages/board/board.component';
+import { NavbarComponent } from './pages/navbar/navbar.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { NavbarBurgerComponent } from './pages/navbar-burger/navbar-burger.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ConnexionComponent, RegisterComponent],
+  declarations: [AppComponent, HomeComponent, ConnexionComponent, RegisterComponent, BoardComponent, NavbarComponent, NavbarBurgerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

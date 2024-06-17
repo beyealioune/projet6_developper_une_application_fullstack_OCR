@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <div class="row">
+      <div *ngFor="let article of articles" class="col-md-6 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-subtitle mb-2 text-muted">{{ article.date }} - {{ article.author }}</p>
+            <p class="card-text text-center">{{ article.content }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
