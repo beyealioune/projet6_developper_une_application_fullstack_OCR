@@ -4,13 +4,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { BoardComponent } from './pages/board/board.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ThemeComponent } from './pages/theme/theme.component';
+import { ArticleComponent } from './pages/article/article.component';
 
 
 const routes: Routes = [{ path: '', component: HomeComponent },
   { path : 'connexion', component: ConnexionComponent },
   { path : 'register', component: RegisterComponent },
-  { path : 'board', component: BoardComponent }
-
+  { path : 'board', component: BoardComponent },
+  { path : 'theme', component: ThemeComponent },
+  { path : 'article', component: ArticleComponent },
 ];
 
 @NgModule({

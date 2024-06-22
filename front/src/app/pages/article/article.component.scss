@@ -1,0 +1,25 @@
+@media (max-width: 767px) {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .article-meta {
+      text-align: left; /* Garder aligné à gauche en mobile */
+    }
+    .author {
+      display: block;
+      text-align: center; /* Centrer l'auteur en mobile */
+    }
+    .date, .theme {
+      margin-right: 10px; /* Espacement entre la date et le thème en desktop */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    h2 {
+      text-align: left; /* Aligner à gauche en desktop */
+    }
+  }
