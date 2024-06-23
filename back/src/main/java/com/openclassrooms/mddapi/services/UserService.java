@@ -4,8 +4,10 @@ import com.openclassrooms.mddapi.Dtos.UserDTO;
 import com.openclassrooms.mddapi.entities.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -22,4 +24,18 @@ public class UserService {
             User user = userRepository.findByUsername(username);
             return user != null ? UserDTO.fromModel(user) : null;
         }
+
+    public UserDTO getMe() {
+        // Récupérer l'email de l'utilisateur actuellement authentifié
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        // Recherche de l'utilisateur par email
+        Optional<User> user = userRepository.findByEmail(userEmail);
+        if (!user.isPresent()) {
+            throw new EntityNotFoundException("User not found with email: " + userEmail);
+        }
+
+        // Conversion de l'utilisateur en DTO
+        return UserDTO.fromModel(user.get());
+    }
 }
