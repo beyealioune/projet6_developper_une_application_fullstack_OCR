@@ -6,6 +6,7 @@ import { BoardComponent } from './pages/board/board.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ThemeComponent } from './pages/theme/theme.component';
 import { ArticleComponent } from './pages/article/article.component';
+import { CreateArticleComponent } from './create-article/create-article.component';
 
 
 const routes: Routes = [{ path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [{ path: '', component: HomeComponent },
   { path : 'board', component: BoardComponent },
   { path : 'theme', component: ThemeComponent },
   { path : 'article', component: ArticleComponent },
+  { path : 'create', component: CreateArticleComponent }
 ];
 
 @NgModule({

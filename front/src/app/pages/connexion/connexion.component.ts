@@ -34,7 +34,7 @@ export class ConnexionComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
 
-  public Onsubmit(): void {
+  public onSubmit(): void {
     const loginRequest = this.loginForm.value as LoginRequest;
     this.authService.login(loginRequest).subscribe(
       (response: AuthSuccess) => {
