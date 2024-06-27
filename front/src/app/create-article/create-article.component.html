@@ -1,51 +1,60 @@
 <div class="container mt-5">
     <!-- En-tête avec le titre centré et une flèche de retour -->
-    <div class="text-center mb-3">
-      <!-- Utilisation d'une classe pour aligner correctement sur mobile et desktop -->
-      <div class="d-flex justify-content-between align-items-center">
-        <a href="#" onclick="history.go(-1); return false;"><i class="fas fa-arrow-left"></i></a>
-        <h2>Créer un article</h2>
-        <div></div><!-- Utilisé pour l'espacement -->
-      </div>
+    <div class="container mt-5">
+        <!-- En-tête avec le titre centré et une flèche de retour -->
+        <div class="row mb-3 align-items-center">
+            <div class="col-12 col-md-2 mb-2 mb-md-0">
+                <a href="#" onclick="history.go(-1); return false;" class="btn btn-link">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </a>
+            </div>
+            <div class="col-12 col-md-10 text-center text-md-left">
+                <h2>Créer un article</h2>
+            </div>
+        </div>
     </div>
-  
+    
+
     <!-- Formulaire pour créer un article -->
-    <form class="text-center">
-      <!-- Champ pour sélectionner un thème -->
-      <div class="form-group row justify-content-center">
-        <label for="theme" class="col-sm-3 col-form-label">Sélectionner un thème</label>
-        <div class="col-sm-6">
-          <!-- Utilisation d'un select pour sélectionner un thème -->
-          <select class="form-control custom-input" id="theme">
-            <option value="theme1">Thème 1</option>
-            <option value="theme2">Thème 2</option>
-            <option value="theme3">Thème 3</option>
-          </select>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <!-- Champ pour sélectionner un thème -->
+        <div class="form-group row justify-content-center mb-3">
+            <div class="col-sm-3">
+                <input type="text" formControlName="theme" class="form-control custom-input" id="theme" placeholder="Sélectionner un thème">
+                <div *ngIf="articleForm.get('theme')?.invalid && (articleForm.get('theme')?.dirty || articleForm.get('theme')?.touched)" class="text-danger">
+                    <div *ngIf="articleForm.get('theme')?.errors">Thème requis</div>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Champ pour entrer un titre -->
-      <div class="form-group row justify-content-center">
-        <label for="title" class="col-sm-3 col-form-label">Sélectionner un titre</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control custom-input" id="title" placeholder="Sélectionner un titre">
+
+        <!-- Champ pour entrer un titre -->
+        <div class="form-group row justify-content-center mb-3">
+            <div class="col-sm-3">
+                <input type="text" formControlName="title" class="form-control custom-input" id="title" placeholder="Sélectionner un titre">
+                <div *ngIf="articleForm.get('title')?.invalid && (articleForm.get('title')?.dirty || articleForm.get('title')?.touched)" class="text-danger">
+                    <div *ngIf="articleForm.get('title')?.errors">Titre requis</div>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Champ pour le contenu de l'article (plus grand) -->
-      <div class="form-group row justify-content-center">
-        <label for="content" class="col-sm-3 col-form-label">Contenu de l'article</label>
-        <div class="col-sm-8">
-          <textarea class="form-control custom-input" id="content" rows="8" placeholder="Contenu de l'article"></textarea>
+
+        <!-- Champ pour le contenu de l'article (plus grand) -->
+        <div class="form-group row justify-content-center mb-3">
+            <div class="col-sm-8">
+                <textarea formControlName="content" class="form-control custom-input" id="content" rows="8" placeholder="Contenu de l'article"></textarea>
+                <div *ngIf="articleForm.get('content')?.invalid && (articleForm.get('content')?.dirty || articleForm.get('content')?.touched)" class="text-danger">
+                    <div *ngIf="articleForm.get('content')?.errors">Contenu requis</div>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Bouton pour soumettre le formulaire -->
-      <div class="form-group row justify-content-center">
-        <div class="col-sm-6">
-          <button type="submit" class="btn btn-primary btn-block">Créer</button>
+
+        <!-- Bouton pour soumettre le formulaire -->
+        <div class="form-group row justify-content-center mb-3">
+            <div class="col-sm-6 text-center">
+                <button type="submit" [disabled]="!articleForm.valid" class="btn btn-primary btn-block">Créer l'article</button>
+            </div>
         </div>
-      </div>
     </form>
-  </div>
-  
+</div>
+
+<!-- Lien vers Font Awesome pour les icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

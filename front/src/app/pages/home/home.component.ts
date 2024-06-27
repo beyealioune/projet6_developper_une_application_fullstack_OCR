@@ -6,12 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-register() {
-throw new Error('Method not implemented.');
-}
-login() {
-throw new Error('Method not implemented.');
-}
+
   constructor() {}
 
   ngOnInit(): void {}

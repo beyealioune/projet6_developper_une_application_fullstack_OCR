@@ -11,6 +11,8 @@ import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,17 +38,25 @@ public class ArticleService {
 //    }
 
     public ArticleDTO createArticle(ArticleDTO articleDTO) {
+        // Récupérer l'utilisateur depuis userRepository
         User user = userRepository.findById(articleDTO.getAuthor().getId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        ThemeDTO themeDTO = themeService.createOrGetTheme(articleDTO.getTheme());
+        // Créer ou récupérer le thème à partir du nom
+        ThemeDTO themeDTO = themeService.createOrGetThemeByName(articleDTO.getTheme().getName());
         Theme theme = themeDTO.toModel();
 
+        // Convertir articleDTO en Article
         Article article = articleDTO.toModel();
         article.setAuthor(user);
         article.setTheme(theme);
+        article.setCreatedAt(LocalDateTime.now());
 
+
+        // Sauvegarder l'article dans la base de données
         Article savedArticle = articleRepository.save(article);
+
+        // Retourner l'ArticleDTO correspondant à l'article sauvegardé
         return ArticleDTO.fromModel(savedArticle);
     }
 

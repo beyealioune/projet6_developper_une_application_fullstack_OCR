@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
@@ -23,7 +24,7 @@ import { CreateArticleComponent } from './create-article/create-article.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,ReactiveFormsModule
+    MatButtonModule,ReactiveFormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

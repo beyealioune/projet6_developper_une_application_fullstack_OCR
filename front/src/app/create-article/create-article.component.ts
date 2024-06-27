@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ArticleService } from '../services/article.service';
+import { Article } from '../models/article';
 
 @Component({
   selector: 'app-create-article',
@@ -10,10 +12,9 @@ export class CreateArticleComponent implements OnInit {
 
   articleForm!: FormGroup; // Déclarez un FormGroup pour le formulaire
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private articleService: ArticleService) { }
 
   ngOnInit(): void {
-    // Initialisez le formulaire dans le hook ngOnInit
     this.articleForm = this.formBuilder.group({
       theme: ['', Validators.required], // Champ thème avec validation requise
       title: ['', Validators.required], // Champ titre avec validation requise
@@ -21,15 +22,25 @@ export class CreateArticleComponent implements OnInit {
     });
   }
 
-  // Méthode pour soumettre le formulaire
   onSubmit() {
     if (this.articleForm.valid) {
-      // Logique pour soumettre les données (envoyer à un service, etc.)
-      console.log(this.articleForm.value);
-      // Réinitialiser le formulaire après soumission
-      this.articleForm.reset();
+      const articleData: Article = {
+        title: this.articleForm.value.title,
+        date: new Date().toISOString(),
+        author: 'Auteur', 
+        content: this.articleForm.value.content
+      };
+
+      this.articleService.createArticle(articleData).subscribe(
+        response => {
+          console.log('Article créé avec succès : ', response);
+          this.articleForm.reset();
+        },
+        error => {
+          console.error('Erreur lors de la création de l\'article : ', error);
+        }
+      );
     } else {
-      // Afficher des messages d'erreur ou d'alerte si le formulaire est invalide
       console.error('Le formulaire est invalide');
     }
   }

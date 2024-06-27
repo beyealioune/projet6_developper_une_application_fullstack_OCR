@@ -18,6 +18,7 @@ public class ThemeService {
     public List<ThemeDTO> getAllThemes() {
         return themeRepository.findAll().stream().map(ThemeDTO::fromModel).collect(Collectors.toList());
     }
+
     public ThemeDTO createOrGetTheme(ThemeDTO themeDTO) {
         Optional<Theme> existingTheme = themeRepository.findByName(themeDTO.getName());
 
@@ -26,6 +27,20 @@ public class ThemeService {
             theme = existingTheme.get();
         } else {
             theme = themeRepository.save(themeDTO.toModel());
+        }
+
+        return ThemeDTO.fromModel(theme);
+    }
+
+    public ThemeDTO createOrGetThemeByName(String themeName) {
+        Optional<Theme> existingTheme = themeRepository.findByName(themeName);
+
+        Theme theme;
+        if (existingTheme.isPresent()) {
+            theme = existingTheme.get();
+        } else {
+            ThemeDTO newThemeDTO = ThemeDTO.fromName(themeName);
+            theme = themeRepository.save(newThemeDTO.toModel());
         }
 
         return ThemeDTO.fromModel(theme);

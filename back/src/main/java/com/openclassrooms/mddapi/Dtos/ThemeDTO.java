@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,12 +25,26 @@ public class ThemeDTO {
                 .build();
     }
 
+    public static ThemeDTO fromName(String name) {
+        return ThemeDTO.builder()
+                .name(name)
+                .build();
+    }
+
     public Theme toModel() {
         Theme theme = new Theme();
         theme.setId(this.id);
         theme.setName(this.name);
-        theme.setArticles(this.articles.stream().map(ArticleDTO::toModel).collect(Collectors.toList()));
+
+        if (this.articles != null) {
+            theme.setArticles(this.articles.stream().map(ArticleDTO::toModel).collect(Collectors.toList()));
+        } else {
+            theme.setArticles(Collections.emptyList()); // Ou null, selon votre logique métier
+        }
+
         return theme;
     }
 
 }
+
+
