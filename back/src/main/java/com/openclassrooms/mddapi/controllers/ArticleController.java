@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.controllers;
 import com.openclassrooms.mddapi.Dtos.ArticleDTO;
 import com.openclassrooms.mddapi.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +15,9 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping("/create")
-    public ArticleDTO createArticle(@RequestBody ArticleDTO articleDTO) {
-        return articleService.createArticle(articleDTO);
+    public ResponseEntity<ArticleDTO> createArticle(@RequestBody ArticleDTO articleDTO) {
+        ArticleDTO createdArticle = articleService.createArticle(articleDTO);
+        return ResponseEntity.ok(createdArticle);
     }
 
     @GetMapping("/allArticles")

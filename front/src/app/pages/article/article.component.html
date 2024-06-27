@@ -1,0 +1,55 @@
+<!-- articles.component.html -->
+<h1>hello</h1>
+<div class="container mt-5">
+  <!-- Affichage de l'article -->
+  <div>
+    <!-- Titre de l'article centré en mobile, aligné à gauche en desktop -->
+    <h2 class="text-center text-md-left mb-3 mb-md-0 d-block d-md-inline">Titre article</h2>
+    <i class="fa-thin fa-arrow-left"></i>
+    <!-- Métadonnées de l'article alignées à gauche -->
+    <div class="article-meta text-left">
+      <p>
+        <span class="author text-center text-md-left">Autheur</span> - 
+        <span class="date">janvier 02</span> - 
+        <span class="theme">javascript</span>
+      </p>
+    </div>
+   
+    <!-- Contenu de l'article centré en mobile, aligné à gauche en desktop -->
+    <p class="text-center text-md-left">Lorem ipsum dolor sit, amet consecteturre doloribus quam assumenda neque labore mollitia nulla?</p>
+    <hr>
+    
+    <!-- Section des commentaires -->
+    <div class="comments-section">
+      <h3>Commentaires</h3>
+      
+      <!-- Liste des commentaires -->
+      <div class="comment mb-4" *ngFor="let comment of selectedArticle?.comments">
+        <div class="comment-info">
+          <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+          <span class="username">username</span>
+          <p class="comment-text">{{ comment.text }}</p>
+        </div>
+      </div>
+      
+      <!-- Séparateur -->
+    
+      
+      <!-- Formulaire réactif d'ajout de commentaire -->
+      <div class="add-comment-form">
+        <form [formGroup]="commentForm" (ngSubmit)="ajouterCommentaire()" class="d-flex">
+          <div class="form-group flex-grow-1">
+            <textarea formControlName="text" class="form-control" rows="3" placeholder="Ajouter un commentaire" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary ml-2">
+            <i class="fas fa-arrow-alt-circle-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Lien vers Font Awesome pour les icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
