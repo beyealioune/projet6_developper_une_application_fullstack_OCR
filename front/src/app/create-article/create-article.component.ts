@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArticleService } from '../services/article.service';
-import { Article } from '../models/article';
 import { Author } from '../models/author';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import { Articles } from '../models/articles';
 
 
 @Component({
@@ -31,7 +31,7 @@ export class CreateArticleComponent implements OnInit {
 
   onSubmit() {
     if (this.articleForm.valid) {
-      const articleData: Article =  {
+      const articleData: Articles =  {
       title : this.articleForm.value.title,
       content: this.articleForm.value.content ,
       createdAt: '',

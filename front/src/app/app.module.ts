@@ -14,8 +14,9 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { NavbarBurgerComponent } from './pages/navbar-burger/navbar-burger.component';
 import { ThemeComponent } from './pages/theme/theme.component';
-import { ArticleComponent } from './pages/article/article.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { AuthInterceptor } from './interceptor/jwt.interceptor';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { CreateArticleComponent } from './create-article/create-article.componen
     BrowserAnimationsModule,
     MatButtonModule,ReactiveFormsModule,HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

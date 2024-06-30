@@ -10,15 +10,21 @@
       </div>
     </div>
   
-  <div class="row">
-    <div *ngFor="let article of articles" class="col-md-6 mb-4">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h5 class="card-title">{{ article.title }}</h5>
-          <p class="card-subtitle mb-2 text-muted">{{ article.createdAt }} - {{ article.author.name }}</p>
-          <p class="card-text text-center">{{ article.content }}</p>
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let article of articles" class="col-md-6 col-12 mb-4">
+          <a [routerLink]="['/article', article.id]" class="text-decoration-none">
+            <div class="card bg-light">
+              <div class="card-body">
+                <h5 class="card-title">{{ article.title }}</h5>
+                <p class="card-subtitle mb-2 text-muted">{{ article.createdAt }} - {{ article.author.name }}</p>
+                <p class="card-text text-center">{{ article.content }}</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-</div>
+    
+    
+    
