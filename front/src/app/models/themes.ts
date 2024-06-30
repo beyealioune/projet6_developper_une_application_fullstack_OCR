@@ -1,9 +1,7 @@
-// article.model.ts
+import { Article } from "./article";
+
 export interface Theme {
-    id: number;
-    theme: string;
-    title: string;
-    author: string;
-    content: string;
-  }
-  
+  id: number;
+  name: string;
+  articles: Article[];
+}

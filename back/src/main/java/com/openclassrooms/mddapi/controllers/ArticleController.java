@@ -39,4 +39,9 @@ public class ArticleController {
     public ArticleDTO getArticleById(@PathVariable Long articleId) {
         return articleService.getArticleById(articleId);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<ArticleDTO> getArticlesByUser(@PathVariable Long userId) {
+        return articleService.getArticlesByUser(userId);
+    }
 }

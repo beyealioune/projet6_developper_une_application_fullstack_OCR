@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../models/article';
+import { Author } from '../models/author';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user';
+
 
 @Component({
   selector: 'app-create-article',
@@ -11,8 +15,10 @@ import { Article } from '../models/article';
 export class CreateArticleComponent implements OnInit {
 
   articleForm!: FormGroup; // Déclarez un FormGroup pour le formulaire
+  currentUser!: User;
 
-  constructor(private formBuilder: FormBuilder, private articleService: ArticleService) { }
+
+  constructor(private formBuilder: FormBuilder, private articleService: ArticleService,private userService: UserService) { }
 
   ngOnInit(): void {
     this.articleForm = this.formBuilder.group({
@@ -20,16 +26,19 @@ export class CreateArticleComponent implements OnInit {
       title: ['', Validators.required], // Champ titre avec validation requise
       content: ['', Validators.required] // Champ contenu avec validation requise
     });
+    this.loadAuthenticatedUser();
   }
 
   onSubmit() {
     if (this.articleForm.valid) {
-      const articleData: Article = {
-        title: this.articleForm.value.title,
-        date: new Date().toISOString(),
-        author: 'Auteur', 
-        content: this.articleForm.value.content
-      };
+      const articleData: Article =  {
+      title : this.articleForm.value.title,
+      content: this.articleForm.value.content ,
+      createdAt: '',
+      author: this.currentUser,
+      theme: this.articleForm.value.theme,
+      comments: null
+      }
 
       this.articleService.createArticle(articleData).subscribe(
         response => {
@@ -43,5 +52,20 @@ export class CreateArticleComponent implements OnInit {
     } else {
       console.error('Le formulaire est invalide');
     }
+  }
+
+
+
+
+  loadAuthenticatedUser() {
+    this.userService.getAuthenticatedUser().subscribe(
+      (user: User) => {
+        this.currentUser = user;
+        console.log('Current User:', this.currentUser);
+      },
+      (error) => {
+        console.error('Error fetching authenticated user:', error);
+      }
+    );
   }
 }

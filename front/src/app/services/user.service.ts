@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Article } from '../models/article';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeService {
+export class UserService {
 
-  private pathService = environment.baseUrl;
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
-  getAllThemes(): Observable<Article[]> {
-    return this.http.get<Article[]>(`${this.pathService}article/allArticles`);
+  getAuthenticatedUser(): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}auth/me`);
   }
 }

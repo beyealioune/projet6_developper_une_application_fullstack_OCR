@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from 'src/app/models/article';
+import { Theme } from 'src/app/models/themes';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-theme',
@@ -7,26 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemeComponent implements OnInit {
 
-  constructor() { }
+  themes: Article[] = [];
+
+  constructor(private themeService: ThemeService) { }
 
   ngOnInit(): void {
+    this.getThemes();
   }
 
-  themes = [
-    { id:1,
-      theme: 'Article 1',
-      title:'Article 1',
-      author: 'Auteur 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    },
-    {
-      id:2,
-      theme: 'Article 1',
-      title:'Article 1',
-      author: 'Auteur 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    }
-    // Ajoutez plus d'articles ici
-  ];
+ getThemes(): void {
+    this.themeService.getAllThemes().subscribe(
+      (data) => {
+        this.themes = data;
+        console.log('Themes:', this.themes);
+        
+      },
+      (error) => {
+        console.error('Error fetching themes:', error);
+      }
+    );
+  }
+  
 
 }

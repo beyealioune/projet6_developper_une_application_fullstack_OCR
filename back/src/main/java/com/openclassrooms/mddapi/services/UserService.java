@@ -12,18 +12,18 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-        @Autowired
-        private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-        public UserDTO getUserProfile(Long userId) {
-            Optional<User> user = userRepository.findById(userId);
-            return user.map(UserDTO::fromModel).orElse(null);
-        }
+    public UserDTO getUserProfile(Long userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return user.map(UserDTO::fromModel).orElse(null);
+    }
 
-        public UserDTO getUserProfileByUsername(String username) {
-            User user = userRepository.findByUsername(username);
-            return user != null ? UserDTO.fromModel(user) : null;
-        }
+    public UserDTO getUserProfileByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        return user != null ? UserDTO.fromModel(user) : null;
+    }
 
     public UserDTO getMe() {
         // Récupérer l'email de l'utilisateur actuellement authentifié
@@ -35,7 +35,10 @@ public class UserService {
             throw new EntityNotFoundException("User not found with email: " + userEmail);
         }
 
-        // Conversion de l'utilisateur en DTO
-        return UserDTO.fromModel(user.get());
+        // Conversion de l'utilisateur en DTO sans inclure le mot de passe
+        UserDTO userDTO = UserDTO.fromModel(user.get());
+        userDTO.setPassword(null); // Supprimer le mot de passe du DTO
+
+        return userDTO;
     }
 }

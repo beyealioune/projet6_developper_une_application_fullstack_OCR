@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +33,16 @@ public class ArticleDTO {
                 .build();
     }
 
+    public static ArticleDTO fromPartialModel(Article article) {
+        return ArticleDTO.builder()
+                .id(article.getId())
+                .title(article.getTitle())
+                .content(article.getContent())
+                .createdAt(article.getCreatedAt())
+                // Ne pas ajouter l'auteur et le thème pour éviter la récursivité
+                .build();
+    }
+
     public Article toModel() {
         Article article = new Article();
         article.setId(this.id);
@@ -46,4 +55,13 @@ public class ArticleDTO {
         return article;
     }
 
+    public Article toPartialModel() {
+        Article article = new Article();
+        article.setId(this.id);
+        article.setTitle(this.title);
+        article.setContent(this.content);
+        article.setCreatedAt(this.createdAt);
+        // Ne pas ajouter l'auteur et le thème pour éviter la récursivité
+        return article;
+    }
 }

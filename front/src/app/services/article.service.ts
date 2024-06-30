@@ -17,4 +17,8 @@ export class ArticleService {
   createArticle(article: Article): Observable<Article> {
     return this.http.post<Article>(`${this.pathService}article/create`, article);
   }
+
+  getArticlesByUser(userId: number): Observable<Article[]> {
+    return this.http.get<Article[]>(`${this.pathService}article/user/${userId}`);
+  }
 }

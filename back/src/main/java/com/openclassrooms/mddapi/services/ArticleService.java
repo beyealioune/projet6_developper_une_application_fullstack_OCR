@@ -78,4 +78,12 @@ public class ArticleService {
         Optional<Article> article = articleRepository.findById(articleId);
         return article.map(ArticleDTO::fromModel).orElse(null);
     }
+
+    public List<ArticleDTO> getArticlesByUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Article> articles = articleRepository.findByAuthor(user);
+        return articles.stream().map(ArticleDTO::fromModel).collect(Collectors.toList());
+    }
 }

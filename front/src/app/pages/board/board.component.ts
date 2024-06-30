@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from 'src/app/models/article';
+import { User } from 'src/app/models/user';
+import { ArticleService } from 'src/app/services/article.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-board',
@@ -6,25 +10,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  currentUser!: User;
+  articles!: Article[];
 
-  constructor() { }
+  constructor(
+    private articleService: ArticleService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+      this.articleService.getArticlesByUser(1).subscribe(data => {
+        this.articles = data;
+      });
+    
+    
+    console.log(this.articles);
+    
   }
-  articles = [
-    {
-      title: 'Article 1',
-      date: '2024-06-16',
-      author: 'Auteur 1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    },
-    {
-      title: 'Article 2',
-      date: '2024-06-15',
-      author: 'Auteur 2',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    }
-    // Ajoutez plus d'articles ici
-  ];
 
+ 
+
+  // loadAuthenticatedUser(): void {
+  //   this.userService.getAuthenticatedUser().subscribe(
+  //     (user: User) => {
+  //       this.currentUser = user;
+  //       const idTest = 1;
+  //       this.loadUserArticles(idTest); 
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching authenticated user:', error);
+  //     }
+  //   );
+  // }
 }

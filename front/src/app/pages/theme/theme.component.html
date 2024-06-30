@@ -2,7 +2,7 @@
     <div *ngFor="let theme of themes" class="col-12 col-md-6 mb-4">
       <div class="card bg-light">
         <div class="card-body">
-          <h5 class="card-title">{{ theme.title }}</h5>
+          <h5 class="card-title">{{ theme.theme?.name }}</h5>
           <p class="card-text text-center">{{ theme.content }}</p>
           <div class="d-flex justify-content-center mt-3">
             <button class="btn btn-primary">S'abonner</button>
@@ -11,3 +11,4 @@
       </div>
     </div>
   </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
