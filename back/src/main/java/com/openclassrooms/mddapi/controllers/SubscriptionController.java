@@ -23,4 +23,11 @@ public class SubscriptionController {
     public List<ArticleDTO> getSubscribedArticles(@PathVariable Long userId) {
         return subscriptionService.getSubscribedArticles(userId);
     }
+
+
+    @DeleteMapping("/article/{articleId}/user/{userId}")
+    public void unsubscribeFromArticle(@PathVariable Long userId, @PathVariable Long articleId) {
+        subscriptionService.unsubscribeFromArticle(userId, articleId);
+    }
+
 }

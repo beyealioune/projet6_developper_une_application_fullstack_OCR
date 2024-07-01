@@ -1,5 +1,3 @@
-<!-- articles.component.html -->
-
 <div class="container mt-5">
   <!-- Affichage de l'article -->
   <div>
@@ -24,18 +22,16 @@
       <h3>Commentaires</h3>
       
       <!-- Liste des commentaires -->
-      <div class="comment mb-4 p-3" *ngFor="let comment of comments">
+      <div class="comment mb-4 p-3" *ngFor="let comment of commentReceived">
         <div class="comment-info bg-light p-3 rounded">
           <div class="d-flex justify-content-between">
             <h5>{{ comment.author.name }}</h5>
-            <span class="text-muted">{{ comment.author.name }}</span>
+  
+            <span class="text-muted">{{ comment.createdAt }}</span>
           </div>
           <p class="comment-text">{{ comment.content }}</p>
         </div>
       </div>
-      
-      <!-- Séparateur -->
-    
       
       <!-- Formulaire réactif d'ajout de commentaire -->
       <div class="add-comment-form">
@@ -51,7 +47,3 @@
     </div>
   </div>
 </div>
-<!-- Lien vers Font Awesome pour les icônes -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-

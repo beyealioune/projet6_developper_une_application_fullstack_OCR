@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.entities.Theme;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class ThemeDTO {
     private Long id;
     private String name;
