@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.entities.Article;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class ArticleDTO {
     private Long id;
     private String title;
@@ -29,7 +31,7 @@ public class ArticleDTO {
                 .createdAt(article.getCreatedAt())
                 .author(UserDTO.fromModel(article.getAuthor()))
                 .theme(ThemeDTO.fromModel(article.getTheme()))
-                .comments(article.getComments().stream().map(CommentDTO::fromModel).collect(Collectors.toList()))
+                .comments(article.getComments().stream().map(CommentDTO::fromModelWithoutArticle).collect(Collectors.toList()))
                 .build();
     }
 
@@ -39,7 +41,6 @@ public class ArticleDTO {
                 .title(article.getTitle())
                 .content(article.getContent())
                 .createdAt(article.getCreatedAt())
-                // Ne pas ajouter l'auteur et le thème pour éviter la récursivité
                 .build();
     }
 
@@ -61,7 +62,6 @@ public class ArticleDTO {
         article.setTitle(this.title);
         article.setContent(this.content);
         article.setCreatedAt(this.createdAt);
-        // Ne pas ajouter l'auteur et le thème pour éviter la récursivité
         return article;
     }
 }

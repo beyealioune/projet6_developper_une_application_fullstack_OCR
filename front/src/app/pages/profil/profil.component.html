@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
+      <div class="col-sm-6">
+        <div class="  text-center">
+            <h2>Profil user</h2>
+        </div>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="d-flex flex-column">
+          <div class="form-group mb-3 col-3 mx-auto">
+            <label for="username">Username</label>
+            <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username">
+          </div>
+          <div class="form-group mb-3 col-3 mx-auto">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email">
+          </div>
+          <div class="form-group mb-3 col-3 mx-auto text-center">
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <hr>
+
+    <div class="container">
+        <div class="row">
+          <div *ngFor="let article of articles" class="col-md-6 col-12 mb-4">
+            <a  class="text-decoration-none">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="card-title">{{ article.title }}</h5>
+                  <p class="card-subtitle mb-2 text-muted">{{ article.createdAt }} - {{ article.author.name }}</p>
+                  <p class="card-text text-center">{{ article.content }}</p>
+                  <div class="text-center mt-3">
+                    <button (click)="unsubscribe(article.id)" class="btn btn-danger">Se désabonner</button>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+  
+
+      
+
+
+  <h1>coucou</h1>
+  

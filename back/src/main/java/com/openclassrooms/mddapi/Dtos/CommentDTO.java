@@ -23,7 +23,16 @@ public class CommentDTO {
                 .content(comment.getContent())
                 .createdAt(comment.getCreatedAt())
                 .author(UserDTO.fromModel(comment.getAuthor()))
-                .article(ArticleDTO.fromModel(comment.getArticle()))
+                .article(ArticleDTO.fromPartialModel(comment.getArticle()))
+                .build();
+    }
+
+    public static CommentDTO fromModelWithoutArticle(Comment comment) {
+        return CommentDTO.builder()
+                .id(comment.getId())
+                .content(comment.getContent())
+                .createdAt(comment.getCreatedAt())
+                .author(UserDTO.fromModel(comment.getAuthor()))
                 .build();
     }
 
@@ -33,8 +42,7 @@ public class CommentDTO {
         comment.setContent(this.content);
         comment.setCreatedAt(this.createdAt);
         comment.setAuthor(this.author.toModel());
-        comment.setArticle(this.article.toModel());
+        comment.setArticle(this.article.toPartialModel());
         return comment;
     }
-
 }

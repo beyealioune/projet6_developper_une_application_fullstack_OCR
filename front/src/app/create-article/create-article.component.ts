@@ -39,6 +39,7 @@ export class CreateArticleComponent implements OnInit {
       theme: this.articleForm.value.theme,
       comments: null
       }
+      console.log('Article Data:', articleData);
 
       this.articleService.createArticle(articleData).subscribe(
         response => {
@@ -52,6 +53,7 @@ export class CreateArticleComponent implements OnInit {
     } else {
       console.error('Le formulaire est invalide');
     }
+    
   }
 
 

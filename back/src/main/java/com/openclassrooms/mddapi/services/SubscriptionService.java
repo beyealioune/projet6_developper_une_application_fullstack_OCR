@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.entities.Subscription;
 import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.SubscriptionRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +37,12 @@ public class SubscriptionService {
                 .map(subscription -> ArticleDTO.fromModel(subscription.getArticle()))
                 .collect(Collectors.toList());
     }
+
+    public void unsubscribeFromArticle(Long userId, Long articleId) {
+        Subscription subscription = subscriptionRepository.findByUserIdAndArticleId(userId, articleId)
+                .orElseThrow(() -> new EntityNotFoundException("Subscription not found"));
+        subscriptionRepository.delete(subscription);
+    }
+
+
 }

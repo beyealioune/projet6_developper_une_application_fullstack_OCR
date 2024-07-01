@@ -42,4 +42,22 @@ public class UserService {
         }
     }
 
+    public UserDTO updateUserProfile(Long userId, String newUsername, String newEmail) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            throw new EntityNotFoundException("User not found with ID: " + userId);
+        }
+
+        User user = userOptional.get();
+        user.setUsername(newUsername);
+        user.setEmail(newEmail);
+        userRepository.save(user);
+
+        return UserDTO.fromModel(user);
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
 }

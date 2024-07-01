@@ -39,7 +39,9 @@ export class ConnexionComponent implements OnInit {
     const loginRequest = this.loginForm.value as LoginRequest;
     this.authService.login(loginRequest).subscribe(
       (response: AuthSuccess) => {
-        console.log('Received token:', response.token); // Afficher le jeton dans la console
+        console.log('Received token:', response.token);
+        console.log('Received :', loginRequest);
+         // Afficher le jeton dans la console
         localStorage.setItem('token', response.token);
         this.authService.me().subscribe((user: any) => {
           this.sessionService.logIn(user);

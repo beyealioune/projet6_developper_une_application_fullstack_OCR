@@ -9,11 +9,14 @@ import com.openclassrooms.mddapi.services.AuthService;
 import com.openclassrooms.mddapi.services.RegisterService;
 import com.openclassrooms.mddapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -48,6 +51,7 @@ public class AuthController {
         return ResponseEntity.ok(registeredUser);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("auth/login")
     public HashMap loginUser(@RequestBody UserDTO userDTO) {
 
@@ -59,6 +63,20 @@ public class AuthController {
     public UserDTO getMe() {
 
         return userService.getMe();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("auth/me")
+    public ResponseEntity<UserDTO> updateUserProfile(@RequestBody UserDTO userDTO) {
+        String currentEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> currentUser = userService.findByEmail(currentEmail);
+
+        if (currentUser.isPresent()) {
+            UserDTO updatedUser = userService.updateUserProfile(currentUser.get().getId(), userDTO.getUsername(), userDTO.getEmail());
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
 }

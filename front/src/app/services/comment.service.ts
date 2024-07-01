@@ -15,10 +15,10 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
   getCommentsByArticleId(articleId: String): Observable<Comments[]> {
-    return this.http.get<Comments[]>(`${this.pathService}/article/${articleId}`);
+    return this.http.get<Comments[]>(`${this.pathService}article/${articleId}`);
   }
 
   addComment(comment: Comments): Observable<Comments> {
-    return this.http.post<Comments>(`${this.pathService}/add`, comment);
+    return this.http.post<Comments>(`${this.pathService}comments/add`, comment);
   }
 }
