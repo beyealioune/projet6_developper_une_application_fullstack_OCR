@@ -7,16 +7,17 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ThemeComponent } from './pages/theme/theme.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [{ path: '', component: HomeComponent },
   { path : 'connexion', component: ConnexionComponent },
   { path : 'register', component: RegisterComponent },
-  { path : 'board', component: BoardComponent },
-  { path : 'theme', component: ThemeComponent },
-  { path : 'article', component: ArticleComponent },
-  { path : 'create', component: CreateArticleComponent },
-  { path : 'board/create', component: CreateArticleComponent }
+  { path : 'board', component: BoardComponent ,canActivate: [AuthGuard] },
+  { path : 'theme', component: ThemeComponent ,canActivate: [AuthGuard]},
+  { path : 'article/:id', component: ArticleComponent,canActivate: [AuthGuard] },
+  { path : 'create', component: CreateArticleComponent ,canActivate: [AuthGuard]},
+  { path : 'board/create', component: CreateArticleComponent ,canActivate: [AuthGuard]}
 
 ];
 

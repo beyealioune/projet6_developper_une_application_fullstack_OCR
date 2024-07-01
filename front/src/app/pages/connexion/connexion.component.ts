@@ -15,7 +15,7 @@ import { SessionService } from 'src/app/services/session.service';
 export class ConnexionComponent implements OnInit {
 
   loginForm!: FormGroup;
-  onError!: boolean;
+  onError: boolean = false; 
 
   constructor(private authService: AuthService,
     private fb: FormBuilder,
@@ -23,27 +23,28 @@ export class ConnexionComponent implements OnInit {
     private sessionService: SessionService
   ) { }
 
+  ngOnInit(): void {
+    // Initialiser le formulaire de connexion
+    this.initLoginForm();
+  }
+
   initLoginForm(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.min(3)]]
+      password: ['', [Validators.required, Validators.minLength(3)]] 
     });
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
-  public onSubmit(): void {
+  onSubmit(): void {
     const loginRequest = this.loginForm.value as LoginRequest;
     this.authService.login(loginRequest).subscribe(
       (response: AuthSuccess) => {
+        console.log('Received token:', response.token); // Afficher le jeton dans la console
         localStorage.setItem('token', response.token);
-        this.authService.me().subscribe((user: User) => {
+        this.authService.me().subscribe((user: any) => {
           this.sessionService.logIn(user);
-          this.router.navigate(['/home'])
+          this.router.navigate(['/board']);
         });
-        this.router.navigate(['/home'])
       },
       error => this.onError = true
     );

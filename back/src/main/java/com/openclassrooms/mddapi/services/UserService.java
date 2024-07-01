@@ -3,11 +3,11 @@ package com.openclassrooms.mddapi.services;
 import com.openclassrooms.mddapi.Dtos.UserDTO;
 import com.openclassrooms.mddapi.entities.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -26,19 +26,20 @@ public class UserService {
     }
 
     public UserDTO getMe() {
-        // Récupérer l'email de l'utilisateur actuellement authentifié
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        // Recherche de l'utilisateur par email
-        Optional<User> user = userRepository.findByEmail(userEmail);
-        if (!user.isPresent()) {
-            throw new EntityNotFoundException("User not found with email: " + userEmail);
+        try {
+            String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+            Optional<User> user = userRepository.findByEmail(userEmail);
+            if (!user.isPresent()) {
+                throw new EntityNotFoundException("User not found with email: " + userEmail);
+            }
+            UserDTO userDTO = UserDTO.fromModel(user.get());
+            userDTO.setPassword(null); // Supprimer le mot de passe du DTO
+            return userDTO;
+        } catch (EntityNotFoundException ex) {
+            throw ex; // Laisser l'exception EntityNotFoundException être propagée
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to fetch user details", ex); // Capturer et lancer une exception plus générale
         }
-
-        // Conversion de l'utilisateur en DTO sans inclure le mot de passe
-        UserDTO userDTO = UserDTO.fromModel(user.get());
-        userDTO.setPassword(null); // Supprimer le mot de passe du DTO
-
-        return userDTO;
     }
+
 }

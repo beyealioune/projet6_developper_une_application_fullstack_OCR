@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/")
 public class AuthController {
@@ -53,6 +54,7 @@ public class AuthController {
         return authService.loginUser(userDTO);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("auth/me")
     public UserDTO getMe() {
 
