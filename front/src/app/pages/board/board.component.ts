@@ -61,4 +61,17 @@ export class BoardComponent implements OnInit {
       }
     );
   }
+  
+  sortArticlesByDate(): void {
+    this.articles.sort((a, b) => {
+      // Convertir les dates de création en objets Date
+      const dateA = new Date(a.createdAt as string);
+      const dateB = new Date(b.createdAt as string);
+      
+      // Comparer les dates
+      return dateB.getTime() - dateA.getTime(); // Tri décroissant
+    });
+    console.log('Articles triés par date:', this.articles);
+  }
+  
 }

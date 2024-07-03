@@ -31,14 +31,18 @@ export class CreateArticleComponent implements OnInit {
 
   onSubmit() {
     if (this.articleForm.valid) {
-      const articleData: Articles =  {
-      title : this.articleForm.value.title,
-      content: this.articleForm.value.content ,
-      createdAt: '',
-      author: this.currentUser,
-      theme: this.articleForm.value.theme,
-      comments: null
-      }
+      const articleData: Articles = {
+        title: this.articleForm.value.title,
+        content: this.articleForm.value.content,
+        createdAt: '',
+        author: this.currentUser,
+        theme: {
+            id: this.articleForm.value.theme.id,
+            name: this.articleForm.value.theme.name,
+            articles: null // Peut-être null si vous ne l'utilisez pas pour la création d'article
+        },
+        comments: []
+    };
       console.log('Article Data:', articleData);
 
       this.articleService.createArticle(articleData).subscribe(
