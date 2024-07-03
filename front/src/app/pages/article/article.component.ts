@@ -46,20 +46,8 @@ export class ArticleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.articleId = this.route.snapshot.paramMap.get('id');
-    if (this.articleId) {
-      this.articleService.getArticleById(this.articleId).subscribe(
-        (data: Article) => {
-          this.article = data;
-          this.commentReceived = this.article?.comments;
-          console.log('comm:', this.commentReceived);
-          this.loadComments(); // Load comments after the article is fetched
-        },
-        (error: any) => (this.error = 'Failed to load article')
-      );
-    }
-
-    this.userService.getAuthenticatedUser().subscribe(
+  
+     this.userService.getAuthenticatedUser().subscribe(
       (user: User) => {
         this.currentUser = user;
         console.log('Current User:', this.currentUser);
@@ -69,12 +57,32 @@ export class ArticleComponent implements OnInit {
       }
     );
 
+    this.getArticle();
+
     // Initialize comment form
     this.commentForm = this.fb.group({
       text: ['', Validators.required]
     });
 
   }
+
+  getArticle(): void {
+    this.articleId = this.route.snapshot.paramMap.get('id');
+    if (this.articleId) {
+      this.articleService.getArticleById(this.articleId).subscribe(
+        (data: Article) => {
+          this.article = data;
+          this.commentReceived = this.article?.comments;
+          console.log('comm:', this.commentReceived);
+          console.log('art:', this.article);
+
+          this.loadComments(); // Load comments after the article is fetched
+        },
+        (error: any) => (this.error = 'Failed to load article')
+      );
+    }
+  }
+
 
   addComment(): void {
     if (this.commentForm.valid && this.articleId) {
@@ -84,12 +92,11 @@ export class ArticleComponent implements OnInit {
         article: this.article,
         createdAt: new Date().toISOString()
       };
-
       this.commentService.addComment(newComment).subscribe(
         (data: Comments) => {
           this.comments.push(data);
-          this.commentReceived?.push(this.commentForm.value);
-          this.commentForm.reset(); // Réinitialisation du formulaire après l'ajout du commentaire
+          this.commentReceived?.push(newComment);
+          this.commentForm.reset(); 
         },
         (error: any) => {
           this.error = 'Failed to add comment';

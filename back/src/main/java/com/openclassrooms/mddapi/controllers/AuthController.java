@@ -65,18 +65,4 @@ public class AuthController {
         return userService.getMe();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PutMapping("auth/me")
-    public ResponseEntity<UserDTO> updateUserProfile(@RequestBody UserDTO userDTO) {
-        String currentEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        Optional<User> currentUser = userService.findByEmail(currentEmail);
-
-        if (currentUser.isPresent()) {
-            UserDTO updatedUser = userService.updateUserProfile(currentUser.get().getId(), userDTO.getUsername(), userDTO.getEmail());
-            return ResponseEntity.ok(updatedUser);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
 }

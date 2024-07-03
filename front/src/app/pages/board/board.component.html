@@ -4,8 +4,8 @@
         <button routerLink="create" class="btn btn-primary" >Créer un article</button>
       </div>
       <div class="col-md-6 d-flex justify-content-end justify-content-md-end d-flex justify-content-center">
-        <p>
-          Trier par ↓ <i class="fas fa-chevron-down"></i>
+        <p (click)="sortArticlesByDate()" class="clickable">
+          Trier par ↓ 
         </p>
       </div>
     </div>
@@ -17,7 +17,7 @@
             <div class="card bg-light">
               <div class="card-body">
                 <h5 class="card-title">{{ article.title }}</h5>
-                <p class="card-subtitle mb-2 text-muted">{{ article.createdAt }} - {{ article.author.name }}</p>
+                <p class="card-subtitle mb-2 text-muted">{{ article.createdAt }} - {{ article.author.username }}</p>
                 <p class="card-text text-center">{{ article.content }}</p>
               </div>
             </div>

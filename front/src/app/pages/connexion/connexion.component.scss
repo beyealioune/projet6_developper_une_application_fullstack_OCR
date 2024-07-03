@@ -1,5 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
 .custom-logo {
-    width: 40%;
-    height: 1%;
-  }
+  max-height: 100px; /* Limitez la hauteur du logo */
+  width: auto; /* Maintenez les proportions */
+}

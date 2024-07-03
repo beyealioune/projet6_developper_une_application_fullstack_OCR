@@ -1,23 +1,35 @@
 <div class="container mt-5">
-    <div class="text-center">
-        <img src="/assets/logo_p6.png" alt="logo" class="img-fluid custom-logo mb-3" />
-      </div>
-    <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
-      <div class="col-sm-6">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex flex-column">
-          <div class="form-group mb-3 col-3 mx-auto">
-            <label for="email">Adresse mail</label>
-            <input type="email" id="email" formControlName="email" class="form-control" placeholder="Adresse mail">
-          </div>
-          <div class="form-group mb-3 col-3 mx-auto">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" formControlName="password" class="form-control" placeholder="Mot de passe">
-          </div>
-          <div class="form-group mb-3 col-3 mx-auto text-center"> <!-- Utilisez text-center pour centrer le bouton -->
-            <button type="submit" class="btn btn-primary">Se connecter</button>
-          </div>
-        </form>
+  <!-- Navbar pour desktop -->
+  <div class="d-none d-md-block border-bottom pb-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <img src="/assets/logo_p6.png" alt="logo" class="custom-logo" />
+      <div class="navbar-right">
+        <!-- Ajouter ici le contenu de la navbar si nécessaire -->
       </div>
     </div>
   </div>
-  
+
+  <!-- Logo centré pour mobile -->
+  <div class="d-block d-md-none text-center">
+    <img src="/assets/logo_p6.png" alt="logo" class="img-fluid custom-logo mb-3" />
+  </div>
+
+  <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
+    <div class="col-sm-6">
+      <h2 class="text-center mb-4">Se connecter</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex flex-column">
+        <div class="form-group mb-3 col-12 col-md-6 mx-auto">
+          <label for="email">Adresse mail</label>
+          <input type="email" id="email" formControlName="email" class="form-control" placeholder="Adresse mail">
+        </div>
+        <div class="form-group mb-3 col-12 col-md-6 mx-auto">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" formControlName="password" class="form-control" placeholder="Mot de passe">
+        </div>
+        <div class="form-group mb-3 col-12 col-md-6 mx-auto text-center">
+          <button type="submit" class="btn btn-primary">Se connecter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,6 @@ export class UserService {
   }
 
   updateUserProfile(user: Author): Observable<User> {
-    return this.http.put<User>(`${this.baseUrl}auth/me`, user);
+    return this.http.put<User>(`${this.baseUrl}users/auth/me`, user);
   }
 }

@@ -2,42 +2,41 @@
   <!-- Affichage de l'article -->
   <div>
     <!-- Titre de l'article centré en mobile, aligné à gauche en desktop -->
-    <h2 class="text-center text-md-left mb-3 mb-md-0 d-block d-md-inline">{{article?.title}}</h2>
-    <i class="fa-thin fa-arrow-left"></i>
+    <h2  class="text-center text-md-left mb-3 mb-md-0 d-block d-md-inline"> <span onclick="history.go(-1); return false;"> ← </span>{{article?.title}}</h2>
     <!-- Métadonnées de l'article alignées à gauche -->
     <div class="article-meta text-left">
       <p>
-        <span class="author text-center text-md-left">{{article?.author?.name}}</span> - 
-        <span class="date">{{article?.createdAt}}</span> - 
-        <span class="theme">{{article?.theme?.name}}</span>
+        <span class="date mx-1 mx-md-3">{{article?.createdAt}}</span>
+        <span class="author mx-1 mx-md-3">{{article?.author?.username}}</span>
+        <span class="theme mx-1 mx-md-3">{{article?.theme?.name}}</span>
       </p>
     </div>
-   
+
     <!-- Contenu de l'article centré en mobile, aligné à gauche en desktop -->
     <p class="text-center text-md-left">{{article?.content}}</p>
     <hr>
-    
+
     <!-- Section des commentaires -->
     <div class="comments-section mt-4">
       <h3>Commentaires</h3>
-      
+
       <!-- Liste des commentaires -->
       <div class="comment mb-4 p-3" *ngFor="let comment of commentReceived">
-        <div class="comment-info bg-light p-3 rounded">
-          <div class="d-flex justify-content-between">
-            <h5>{{ comment.author.name }}</h5>
-  
-            <span class="text-muted">{{ comment.createdAt }}</span>
+        <div class="comment mb-4 p-3 d-flex align-items-start">
+          <h5 class="mb-0 me-3">{{ comment.author.username }}</h5>
+          <div class="comment-info bg-light p-3 rounded flex-grow-1">
+            <p class="comment-text mb-0">{{ comment.content }}</p>
+            <span class="text-muted d-block text-end">{{ comment.createdAt }}</span>
           </div>
-          <p class="comment-text">{{ comment.content }}</p>
         </div>
       </div>
-      
+
       <!-- Formulaire réactif d'ajout de commentaire -->
       <div class="add-comment-form">
         <form [formGroup]="commentForm" (ngSubmit)="addComment()" class="d-flex">
           <div class="form-group flex-grow-1">
-            <textarea formControlName="text" class="form-control" rows="3" placeholder="Ajouter un commentaire" required></textarea>
+            <textarea formControlName="text" class="form-control" rows="3" placeholder="Ajouter un commentaire"
+              required></textarea>
           </div>
           <button type="submit" class="btn btn-primary ml-2">
             <i class="fas fa-arrow-alt-circle-right"></i>
@@ -46,4 +45,4 @@
       </div>
     </div>
   </div>
-</div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
