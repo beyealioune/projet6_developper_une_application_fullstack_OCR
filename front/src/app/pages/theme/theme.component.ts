@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
-import { Theme } from 'src/app/models/themes';
 import { User } from 'src/app/models/user';
 import { SubscribeService } from 'src/app/services/subscribe.service';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -33,9 +32,7 @@ export class ThemeComponent implements OnInit {
  getThemes(): void {
     this.themeService.getAllThemes().subscribe(
       (data) => {
-        this.themes = data;
-        console.log('Themes:', this.themes);
-        
+        this.themes = data;        
       },
       (error) => {
         console.error('Error fetching themes:', error);

@@ -18,37 +18,30 @@ export class BoardComponent implements OnInit {
     private articleService: ArticleService,
     private userService: UserService,
     private subscriptionService: SubscribeService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
-  
-      this.userService.getAuthenticatedUser().subscribe(
-        (user: User) => {
-          this.currentUser = user;
-          console.log('Current user:', this.currentUser);
-          
-          const idUser = this.currentUser.id;
-          
-      // this.articleService.getArticlesByUser(idUser).subscribe(data => {
-      //   this.articles = data;
-      //   console.log('Articles:', this.articles);
-        
-      // });
-      this.loadSubscribedArticles(this.currentUser.id);
-        },
-        (error) => {
-          console.error('Error fetching authenticated user:', error);
-        }
-      );
-    
-    
-    
+
+    this.userService.getAuthenticatedUser().subscribe(
+      (user: User) => {
+        this.currentUser = user;
+        console.log('Current user:', this.currentUser);
+
+        this.loadSubscribedArticles(this.currentUser.id);
+      },
+      (error) => {
+        console.error('Error fetching authenticated user:', error);
+      }
+    );
+
+
+
     console.log(this.articles);
-    
+
   }
 
- 
+
 
   loadSubscribedArticles(userId: number): void {
     this.subscriptionService.getSubscribedArticles(userId).subscribe(
@@ -61,17 +54,15 @@ export class BoardComponent implements OnInit {
       }
     );
   }
-  
+
   sortArticlesByDate(): void {
     this.articles.sort((a, b) => {
-      // Convertir les dates de création en objets Date
       const dateA = new Date(a.createdAt as string);
       const dateB = new Date(b.createdAt as string);
-      
-      // Comparer les dates
+
       return dateB.getTime() - dateA.getTime(); // Tri décroissant
     });
     console.log('Articles triés par date:', this.articles);
   }
-  
+
 }

@@ -5,7 +5,7 @@ import { Article } from 'src/app/models/article';
 import { Author } from 'src/app/models/author';
 import { User } from 'src/app/models/user';
 import { ArticleService } from 'src/app/services/article.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { SessionService } from 'src/app/services/session.service';
 import { SubscribeService } from 'src/app/services/subscribe.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,7 +20,7 @@ export class ProfilComponent implements OnInit {
   user!: User;
   articles!:Article[];
 
-  constructor(private fb: FormBuilder, private userService: UserService, private articleService: ArticleService,private subscriptionService : SubscribeService) {}
+  constructor(private fb: FormBuilder, private userService: UserService, private articleService: ArticleService,private subscriptionService : SubscribeService, private sessionService: SessionService,private router: Router) {}
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
@@ -86,6 +86,9 @@ export class ProfilComponent implements OnInit {
     );
   }
 
-
+  logOut(): void {
+    this.sessionService.logOut();
+    this.router.navigate(['/connexion']);
+  }
 
 }

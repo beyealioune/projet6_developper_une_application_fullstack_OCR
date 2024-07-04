@@ -15,16 +15,16 @@ import { SessionService } from 'src/app/services/session.service';
 export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
-onError: any;
-form: any;
+  onError: any;
+  form: any;
 
-initForm(): void {
-this.registerForm = this.fb.group({
-  email: ['', [Validators.required, Validators.email]],
-  name: ['', [Validators.required, Validators.min(3)]],
-  password: ['', [Validators.required, Validators.min(3)]]
-});
-}
+  initForm(): void {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, Validators.min(3)]],
+      password: ['', [Validators.required, Validators.min(3)]]
+    });
+  }
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -47,6 +47,6 @@ this.registerForm = this.fb.group({
       },
       error => this.onError = true
     );
-}
+  }
 
 }
