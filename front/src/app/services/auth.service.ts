@@ -5,7 +5,6 @@ import { RegisterRequest } from '../models/registerRequest';
 import { AuthSuccess } from '../models/authSuccess';
 import { Observable } from 'rxjs';
 import { LoginRequest } from '../models/loginRequest';
-import { User } from '../models/user';
 
 
 @Injectable({

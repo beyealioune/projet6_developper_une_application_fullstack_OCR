@@ -1,5 +1,4 @@
 <div class="container mt-5">
-    <!-- En-tête avec le titre centré et une flèche de retour -->
     <div class="container mt-5">
         <!-- En-tête avec le titre centré et une flèche de retour -->
         <div class="row mb-3 align-items-center">
@@ -15,7 +14,6 @@
     </div>
     
 
-    <!-- Formulaire pour créer un article -->
     <form [formGroup]="articleForm" (ngSubmit)="onSubmit()" class="form-horizontal">
         <!-- Champ pour sélectionner un thème -->
         <div class="form-group row justify-content-center mb-3">
@@ -37,7 +35,6 @@
             </div>
         </div>
 
-        <!-- Champ pour le contenu de l'article (plus grand) -->
         <div class="form-group row justify-content-center mb-3">
             <div class="col-sm-8">
                 <textarea formControlName="content" class="form-control custom-input" id="content" rows="8" placeholder="Contenu de l'article"></textarea>
@@ -47,7 +44,6 @@
             </div>
         </div>
 
-        <!-- Bouton pour soumettre le formulaire -->
         <div class="form-group row justify-content-center mb-3">
             <div class="col-sm-6 text-center">
                 <button type="submit" [disabled]="!articleForm.valid" class="btn btn-primary btn-block">Créer l'article</button>
@@ -55,6 +51,4 @@
         </div>
     </form>
 </div>
-
-<!-- Lien vers Font Awesome pour les icônes -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
