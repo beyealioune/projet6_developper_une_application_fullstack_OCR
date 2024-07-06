@@ -30,9 +30,7 @@ export class ProfilComponent implements OnInit {
 
     // Charger les informations de l'utilisateur et les remplir dans le formulaire
     this.userService.getAuthenticatedUser().subscribe(user => {
-      this.user = user;
-      console.log('User!!!!!!!!!:', this.user);
-      
+      this.user = user;      
         this.subscriptionService.getSubscribedArticles(user.id).subscribe(
           (data: Article[]) => {
             this.articles = data;
