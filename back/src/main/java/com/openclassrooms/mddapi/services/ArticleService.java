@@ -31,11 +31,6 @@ public class ArticleService {
     @Autowired
     private SubscriptionRepository subscriptionRepository;
 
-//    public ArticleDTO createArticle(ArticleDTO articleDTO) {
-//        Article article = articleDTO.toModel();
-//        Article savedArticle = articleRepository.save(article);
-//        return ArticleDTO.fromModel(savedArticle);
-//    }
 
     public ArticleDTO createArticle(ArticleDTO articleDTO) {
         // Récupérer l'utilisateur depuis userRepository
